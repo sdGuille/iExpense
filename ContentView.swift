@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("tapCount") private var tapCount = 0
     
     var body: some View {
+        @State var user = User(name: "Guillermo Ruiz", rol: "iOS Developer")
+        
         NavigationStack {
             VStack {
-                Button("Tap Count \(tapCount)") {
-                    tapCount += 1
+                Button("Save User ") {
+                    let encoder = JSONEncoder()
+                    
+                    if let data = try? encoder.encode(user) {
+                        UserDefaults.standard.set(data, forKey: "UserData")
+                    }
                 }
                 
             }
@@ -24,4 +29,9 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+}
+
+struct User: Codable {
+    let name: String
+    let rol: String
 }
