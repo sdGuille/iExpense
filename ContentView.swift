@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var user = User()
+    @StateObject var user = User()
     
     var body: some View {
         VStack {
@@ -27,7 +27,7 @@ struct ContentView: View {
     ContentView()
 }
 
-class User {
-    var firstname = "Guillermo"
-    var lastname = "Ruiz"
+class User: ObservableObject {
+    @Published var firstname = "Guillermo"
+    @Published var lastname = "Ruiz"
 }
