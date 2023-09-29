@@ -13,7 +13,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(expenses.items, id: \.self) { item in
+                ForEach(expenses.items) { item in
                     Text(item.name)
                 }
                 .onDelete(perform: deleteRow)
@@ -24,7 +24,7 @@ struct ContentView: View {
 //                    EditButton()
 //                }
                 Button {
-                    let expense = ExpenseItem(id: 0, name: "Test", type: "Personal", amount: 5)
+                    let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5)
                     expenses.items.append(expense)
                 } label: {
                     Image(systemName: "plus")
