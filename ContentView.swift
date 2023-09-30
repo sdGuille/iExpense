@@ -15,7 +15,11 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(expenses.items) { item in
-                    Text(item.name)
+                    ItemRow(
+                        name: item.name,
+                        type: item.type,
+                        amount: item.amount
+                    )
                 }
                 .onDelete(perform: deleteRow)
             }
