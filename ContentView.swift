@@ -14,14 +14,9 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(expenses.items) { item in
-                    ItemRow(
-                        name: item.name,
-                        type: item.type,
-                        amount: item.amount
-                    )
-                }
-                .onDelete(perform: deleteRow)
+                ExpenseSection(title: "Business", expenses: expenses.businessExpenses, deleteItems: deleteRow)
+                
+                ExpenseSection(title: "Personal", expenses: expenses.personalExpenses, deleteItems: deleteRow)
             }
             .navigationTitle("iExpense")
             .toolbar {
