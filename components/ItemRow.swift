@@ -20,11 +20,12 @@ struct ItemRow: View {
                 Text(type)
             }
             Spacer()
-            Text(amount, format: .currency(code: "USD"))
+            Text(amount, format: .localCurrency)
+                .foregroundStyle(amount < 10 ? .green : amount < 100 ? .blue : .red)
         }
     }
 }
 
 #Preview {
-    ItemRow(name: "Light Bar", type: "Business", amount: 40)
+    ItemRow(name: "Light Bar", type: "Business", amount: 120)
 }
