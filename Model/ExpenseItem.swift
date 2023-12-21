@@ -8,16 +8,8 @@
 import Foundation
 import SwiftData
 
-struct ExpenseItem: Codable, Identifiable, Equatable {
-    var id = UUID()
-    let name: String
-    let type: String
-    let amount: Double
-}
-
-
 @Model
-class ExpenseItom {
+class ExpenseItem {
     var id = UUID()
     var name: String
     var type: String
@@ -30,3 +22,4 @@ class ExpenseItom {
         self.amount = amount
     }
 }
+
