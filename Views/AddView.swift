@@ -12,7 +12,7 @@ struct AddView: View {
     
     @Environment(\.modelContext) var modelContext
     @Environment(\.dismiss) var dismiss
-    @Bindable var expenses: Expenses
+//    @Query var expenses: ExpenseItem
     
     @State private var name = ""
     @State private var type = "Personal"
@@ -48,5 +48,5 @@ struct AddView: View {
 }
 
 #Preview {
-    AddView(expenses: Expenses())
+    AddView()
 }

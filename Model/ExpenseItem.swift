@@ -21,5 +21,13 @@ class ExpenseItem {
         self.type = type
         self.amount = amount
     }
+    
+    var businessExpense: Bool {
+        type == "Business"
+    }
+    
+    var personalExpense: Bool {
+        type == "Personal"
+    }
 }
 

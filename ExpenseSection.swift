@@ -5,11 +5,12 @@
 //  Created by Guillermo Ruiz Baires on 30/9/23.
 //
 
+import SwiftData
 import SwiftUI
 
 struct ExpenseSection: View {
     let title: String
-    let expenses: [ExpenseItem]
+    var expenses: [ExpenseItem]
     let deleteItems: (IndexSet) -> Void
     
     var body: some View {
