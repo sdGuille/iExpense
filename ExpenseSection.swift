@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ExpenseSection: View {
     let title: String
-    var expenses: [ExpenseItem]
+    @Query var expenses: [ExpenseItem]
     let deleteItems: (IndexSet) -> Void
     
     var body: some View {
@@ -22,8 +22,8 @@ struct ExpenseSection: View {
         }
     }
 }
-
-#Preview {
-    ExpenseSection(title: "Example", expenses: [],
-                   deleteItems: { _ in })
-}
+//
+//#Preview {
+//    ExpenseSection(title: "Example", expenses: [],
+//                   deleteItems: { _ in })
+//}

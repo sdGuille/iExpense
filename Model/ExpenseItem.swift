@@ -15,6 +15,14 @@ class ExpenseItem {
     var type: String
     var amount: Double
     
+//    var personalExpenses: [ExpenseItem] {
+//        expenses.filter { $0.type == "Personal" }
+//    }
+//    
+//    var businessExpenses: [ExpenseItem] {
+//        expenses.filter { $0.type == "Business" }
+//    }
+    
     init(id: UUID = UUID(), name: String, type: String, amount: Double) {
         self.id = id
         self.name = name
@@ -22,12 +30,5 @@ class ExpenseItem {
         self.amount = amount
     }
     
-    var businessExpense: Bool {
-        type == "Business"
-    }
-    
-    var personalExpense: Bool {
-        type == "Personal"
-    }
 }
 

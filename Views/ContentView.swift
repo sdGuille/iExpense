@@ -74,21 +74,28 @@ import SwiftUI
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     
+    @State private var path = [ExpenseItem]()
     @Query var expenses: [ExpenseItem]
-    @State var items: ViewModel
     @State private var showingAddExpense = false
     @State private var sortOrder = [
         SortDescriptor(\ExpenseItem.name),
         SortDescriptor(\ExpenseItem.type),
     ]
+    var personalExpenses: [ExpenseItem] {
+        path.filter { $0.type == "Personal" }
+    }
+    
+    var businessExpenses: [ExpenseItem] {
+        path.filter { $0.type == "Business" }
+    }
     
     var body: some View {
-        NavigationStack {
-            
+        NavigationStack(path: $path) {
             VStack {
                 List {
-                    ExpenseSection(title: "Business", expenses: items.businessExpenses, deleteItems: deleteRow)
-                    ExpenseSection(title: "Personal", expenses: items.personalExpenses, deleteItems: deleteRow)
+                    
+//                    ExpenseSection(title: "Personal", expenses: personalExpenses, deleteItems: deleteItem)
+                    ExpenseSection(title: "Business", expenses: businessExpenses, deleteItems: deleteItem)
                 }
                 Menu("Sort", systemImage: "arrow.up.arrow.down") {
                     Picker("Sort", selection: $sortOrder) {
@@ -120,14 +127,13 @@ struct ContentView: View {
             .navigationBarTitleDisplayMode(.inline)
         }
     }
-    func deleteRow(at offset: IndexSet) {
-        items.items.remove(atOffsets: offset)
-        
-    }
     
-    init(modelContext: ModelContext) {
-        let expenses = ViewModel(modelContex: modelContext)
-        _expenses = State(initialValue: expenses)
+    
+    func deleteItem(at offsets: IndexSet) {
+        for offset in offsets {
+            let item = expenses[offset]
+            modelContext.delete(item)
+        }
     }
 }
 
